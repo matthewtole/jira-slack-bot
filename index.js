@@ -14,21 +14,23 @@ const jira = new JiraApi('https', config.jira.host, config.jira.port,
 const JIRA_REGEX = /\b([A-Z]{2,8}-[0-9]{1,8})\b/g;
 
 const botLogic = new BotLogic();
+let projectKeys;
+
+function boot(callback) {
+  jira.listProjects((err, projects) => {
+    if (err) {
+      return callback(err);
+    }
+    projectKeys = projects.map(project => {
+      return project.key;
+    });
+    slack.login();
+  });
+}
 
 function makeJiraLink(id) {
   return `${config.jira.urlRoot}${id}`;
 }
-
-let projectKeys;
-
-jira.listProjects((err, projects) => {
-  if (err) {
-    return console.error(err);
-  }
-  projectKeys = projects.map(project => {
-    return project.key;
-  });
-});
 
 function jiraRegex() {
   if (projectKeys && projectKeys.length) {
@@ -38,12 +40,48 @@ function jiraRegex() {
   return JIRA_REGEX;
 }
 
+function handleError(err) {
+  if (!err) {
+    return;
+  }
+  console.error(err);
+}
+
+function messageFromIssue(id, issue) {
+  return {
+    text: `<${makeJiraLink(id)}|*${id}*: ${issue.fields.summary}>`,
+    as_user: true,
+    attachments: [
+      {
+        fallback: '',
+        fields: [
+          {
+            title: 'Type',
+            value: _.get(issue, 'fields.issuetype.name', 'Unknown'),
+            short: true
+          },
+          {
+            title: 'Priority',
+            value: _.get(issue, 'fields.priority.name', 'Unknown'),
+            short: true
+          },
+          {
+            title: 'Status',
+            value: _.get(issue, 'fields.status.name', 'Unknown'),
+            short: true
+          },
+          {
+            title: 'Assignee',
+            value: _.get(issue, 'fields.assignee.displayName', 'None'),
+            short: true
+          }
+        ]
+      }
+    ]
+  };
+}
+
 slack.on('open', () => {
-  /*
-  _.each(slack.self._client.channels, channel => {
-    console.log(channel.name, channel.id, channel.is_member);
-  });
-  */
   console.log('Bot connected to Slack');
 });
 
@@ -72,52 +110,14 @@ slack.on('message', (message) => {
       if (!issue) {
         return next();
       }
-      channel.postMessage({
-        text: `<${makeJiraLink(id)}|*${id}*: ${issue.fields.summary}>`,
-        as_user: true,
-        attachments: [
-          {
-            fallback: '',
-            fields: [
-              {
-                title: 'Type',
-                value: issue.fields.issuetype.name,
-                short: true
-              },
-              {
-                title: 'Priority',
-                value: issue.fields.priority.name,
-                short: true
-              },
-              {
-                title: 'Status',
-                value: issue.fields.status.name,
-                short: true
-              },
-              {
-                title: 'Assignee',
-                value: issue.fields.assignee ?
-                  issue.fields.assignee.displayName :
-                  'None',
-                short: true
-              }
-            ]
-          }
-        ]
-      });
+      channel.postMessage(messageFromIssue(id, issue));
       botLogic.markIssuePosted(message.channel, id);
       next();
     });
   },
-  function(err) {
-    if (err) {
-      console.error(err);
-    }
-  });
+  handleError);
 });
 
-slack.on('error', (err) => {
-  console.log(err);
-});
+slack.on('error', handleError);
 
-slack.login();
+boot(handleError);

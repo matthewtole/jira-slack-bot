@@ -1,5 +1,5 @@
 {
-  "name": "jira-bot",
+  "name": "jira-slack-bot",
   "version": "1.0.0",
   "description": "A Slack bot that listens for JIRA issues and responds with more information",
   "main": "index.js",
