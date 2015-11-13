@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - 4.2.1
+
+# To test Node v4, Travis needs to use a newer C++ compiler.
+# Source: https://github.com/nodejs/nan/issues/435#issuecomment-136063745
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+before_install:
+  - export CXX=g++-4.8
+  - $CXX --version
+
+script: "make test-travis"
+after_script: "npm install coveralls@2.11.1 && cat ./coverage/lcov.info | coveralls"
