@@ -1,0 +1,124 @@
+{
+  "name": "jira-slack-bot",
+  "version": "1.0.0",
+  "npm-shrinkwrap-version": "5.4.0",
+  "node-version": "v4.2.1",
+  "dependencies": {
+    "async": {
+      "version": "1.5.0",
+      "resolved": "https://registry.npmjs.org/async/-/async-1.5.0.tgz"
+    },
+    "debug": {
+      "version": "2.2.0",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-2.2.0.tgz",
+      "dependencies": {
+        "ms": {
+          "version": "0.7.1",
+          "resolved": "https://registry.npmjs.org/ms/-/ms-0.7.1.tgz"
+        }
+      }
+    },
+    "dotenv": {
+      "version": "1.2.0",
+      "resolved": "https://registry.npmjs.org/dotenv/-/dotenv-1.2.0.tgz"
+    },
+    "jira": {
+      "version": "0.9.2",
+      "resolved": "https://registry.npmjs.org/jira/-/jira-0.9.2.tgz",
+      "dependencies": {
+        "oauth": {
+          "version": "0.9.14",
+          "resolved": "https://registry.npmjs.org/oauth/-/oauth-0.9.14.tgz"
+        },
+        "request": {
+          "version": "2.14.0",
+          "resolved": "https://registry.npmjs.org/request/-/request-2.14.0.tgz",
+          "dependencies": {
+            "form-data": {
+              "version": "0.0.7",
+              "resolved": "https://registry.npmjs.org/form-data/-/form-data-0.0.7.tgz",
+              "dependencies": {
+                "async": {
+                  "version": "0.1.22",
+                  "resolved": "https://registry.npmjs.org/async/-/async-0.1.22.tgz"
+                },
+                "combined-stream": {
+                  "version": "0.0.4",
+                  "resolved": "https://registry.npmjs.org/combined-stream/-/combined-stream-0.0.4.tgz",
+                  "dependencies": {
+                    "delayed-stream": {
+                      "version": "0.0.5",
+                      "resolved": "https://registry.npmjs.org/delayed-stream/-/delayed-stream-0.0.5.tgz"
+                    }
+                  }
+                }
+              }
+            },
+            "mime": {
+              "version": "1.2.9",
+              "resolved": "https://registry.npmjs.org/mime/-/mime-1.2.9.tgz"
+            }
+          }
+        }
+      }
+    },
+    "lodash": {
+      "version": "3.10.1",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
+    },
+    "moment": {
+      "version": "2.10.6",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.10.6.tgz"
+    },
+    "sanity": {
+      "version": "0.2.1",
+      "resolved": "https://registry.npmjs.org/sanity/-/sanity-0.2.1.tgz",
+      "dependencies": {
+        "colors": {
+          "version": "0.6.2",
+          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
+        },
+        "lodash": {
+          "version": "0.10.0",
+          "resolved": "https://registry.npmjs.org/lodash/-/lodash-0.10.0.tgz"
+        }
+      }
+    },
+    "slack-client": {
+      "version": "1.4.1",
+      "resolved": "https://registry.npmjs.org/slack-client/-/slack-client-1.4.1.tgz",
+      "dependencies": {
+        "coffee-script": {
+          "version": "1.9.3",
+          "resolved": "https://registry.npmjs.org/coffee-script/-/coffee-script-1.9.3.tgz"
+        },
+        "log": {
+          "version": "1.4.0",
+          "resolved": "https://registry.npmjs.org/log/-/log-1.4.0.tgz"
+        },
+        "ws": {
+          "version": "0.4.31",
+          "resolved": "https://registry.npmjs.org/ws/-/ws-0.4.31.tgz",
+          "dependencies": {
+            "commander": {
+              "version": "0.6.1",
+              "resolved": "https://registry.npmjs.org/commander/-/commander-0.6.1.tgz"
+            },
+            "nan": {
+              "version": "0.3.2",
+              "resolved": "https://registry.npmjs.org/nan/-/nan-0.3.2.tgz"
+            },
+            "options": {
+              "version": "0.0.6",
+              "resolved": "https://registry.npmjs.org/options/-/options-0.0.6.tgz"
+            },
+            "tinycolor": {
+              "version": "0.0.1",
+              "resolved": "https://registry.npmjs.org/tinycolor/-/tinycolor-0.0.1.tgz"
+            }
+          }
+        }
+      }
+    }
+  }
+}
