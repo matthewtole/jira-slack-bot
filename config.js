@@ -24,4 +24,4 @@ module.exports.jira = {
   urlRoot: process.env.JIRA_URL_ROOT
 };
 
-module.exports.channelsToIgnore = process.env.IGNORE_CHANNELS.split(',');
+module.exports.channelsToIgnore = (process.env.IGNORE_CHANNELS || '').split(',');
