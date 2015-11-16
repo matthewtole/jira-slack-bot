@@ -95,9 +95,14 @@ module.exports.jiraInfo = function(ctx, message, callback) {
       if (!issue) {
         return next();
       }
-      channel.postMessage(ctx.messageFromIssue(id, issue));
-      ctx.markIssuePosted(message.channel, id);
-      next();
+      ctx.messageFromIssue(id, issue, (err, data) => {
+        if (err) {
+          return next(err);
+        }
+        channel.postMessage(data);
+        ctx.markIssuePosted(message.channel, id);
+        next();
+      });
     });
   },
   callback);
