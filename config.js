@@ -25,3 +25,5 @@ module.exports.jira = {
 };
 
 module.exports.channelsToIgnore = (process.env.IGNORE_CHANNELS || '').split(',');
+
+module.exports.redisUrl = process.env.REDIS_URL;
