@@ -22,6 +22,9 @@ RUN npm install --no-optional
 # Add rest of app
 ADD . /app
 
+# Add env file, or the app crashed
+COPY .env.sample /app/.env
+
 # Default command to run on boot
 CMD ["start"]
 ENTRYPOINT ["npm"]
