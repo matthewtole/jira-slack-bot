@@ -17,9 +17,11 @@ module.exports.iAmJiraUser = function(ctx, message, callback) {
   const username = data[1];
   ctx.setJiraUserForSlackUser(message.user, username, err => {
     if (err) {
-      channel.send(`Failed to set the JIRA username of ${ctx.slack.getUserByID(message.user).name} to ${username}`);
+      channel.send(`Failed to set the JIRA username of ` +
+        `${ctx.slack.getUserByID(message.user).name} to ${username}`);
     } else {
-      channel.send(`Successfully set the JIRA username of ${ctx.slack.getUserByID(message.user).name} to ${username}`);
+      channel.send(`Successfully set the JIRA username of ` +
+        `${ctx.slack.getUserByID(message.user).name} to ${username}`);
     }
     return callback(err, true);
   });
@@ -59,7 +61,8 @@ module.exports.assignIssue = function(ctx, message, callback) {
         return done(err);
       }
       if (!user) {
-        channel.send(`Sorry, I do not know the JIRA username for ${ctx.slack.getUserByID(assignData.assignee).name}.`);
+        channel.send(`Sorry, I do not know the JIRA username for ` +
+          `${ctx.slack.getUserByID(assignData.assignee).name}.`);
         return done(null, false);
       } else {
         ctx.jira.updateIssue(assignData.issue, {
@@ -68,10 +71,12 @@ module.exports.assignIssue = function(ctx, message, callback) {
           }
         }, err => {
           if (err) {
-            channel.send(`Oh no! I could not assign ${assignData.issue} to ${ctx.slack.getUserByID(assignData.assignee).name}`);
+            channel.send(`Oh no! I could not assign ${assignData.issue} to ` +
+              `${ctx.slack.getUserByID(assignData.assignee).name}`);
             return done(err);
           }
-          channel.send(`Okay! I have assigned ${assignData.issue} to ${ctx.slack.getUserByID(assignData.assignee).name}`);
+          channel.send(`Okay! I have assigned ${assignData.issue} to ` +
+            `${ctx.slack.getUserByID(assignData.assignee).name}`);
           return done(null, false);
         });
       }
