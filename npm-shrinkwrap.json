@@ -54,7 +54,7 @@
     },
     "async": {
       "version": "1.5.0",
-      "from": "async@https://registry.npmjs.org/async/-/async-1.5.0.tgz",
+      "from": "async@1.5.0",
       "resolved": "https://registry.npmjs.org/async/-/async-1.5.0.tgz"
     },
     "balanced-match": {
@@ -180,7 +180,7 @@
     },
     "dotenv": {
       "version": "1.2.0",
-      "from": "dotenv@https://registry.npmjs.org/dotenv/-/dotenv-1.2.0.tgz",
+      "from": "dotenv@1.2.0",
       "resolved": "https://registry.npmjs.org/dotenv/-/dotenv-1.2.0.tgz"
     },
     "double-ended-queue": {
@@ -744,9 +744,9 @@
       "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-0.5.1.tgz"
     },
     "moment": {
-      "version": "2.10.6",
-      "from": "moment@https://registry.npmjs.org/moment/-/moment-2.10.6.tgz",
-      "resolved": "https://registry.npmjs.org/moment/-/moment-2.10.6.tgz"
+      "version": "2.11.2",
+      "from": "moment@>=2.10.6 <3.0.0",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.11.2.tgz"
     },
     "mute-stream": {
       "version": "0.0.5",
